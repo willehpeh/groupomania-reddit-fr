@@ -4,6 +4,8 @@ This is the mock-up front end app for the Open Classrooms project "Work in a tea
 
 ## Instructions
 
+*IMPORTANT - you must have `npm` and the Angular CLI installed.*
+
 Run `npm install` from within the project directory.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
