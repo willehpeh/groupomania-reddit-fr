@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="username">User Name</label>
+        <input type="text" id="username" class="form-control" formControlName="username">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-control" formControlName="password">
+      </div>
+      <button class="btn btn-primary" (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
+      <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+    </form>
+  </div>
+</div>
