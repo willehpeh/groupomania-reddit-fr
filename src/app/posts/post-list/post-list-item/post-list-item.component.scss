@@ -1,5 +1,24 @@
 .post-list-item {
   background-color: white;
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 20px;
+}
+
+.votes {
+  display: flex;
+  align-items: center;
+}
+
+.vote-arrows {
+  i {
+    display: block;
+    margin: 5px;
+  }
+}
+
+.vote-arrow {
+  cursor: pointer;
+  &:hover {
+    filter: opacity(50%);
+  }
 }

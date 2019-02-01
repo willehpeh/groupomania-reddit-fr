@@ -9,14 +9,14 @@ export class AuthService {
   private users: User[] = [
     {
       id: 1,
-      photoUrl: 'https://goo.gl/images/skR8RB',
+      photoUrl: './assets/user.png',
       email: 'test@test.com',
       password: 'testtest',
       username: 'penguinzrulezOK'
     },
     {
       id: 2,
-      photoUrl: 'https://goo.gl/images/skR8RB',
+      photoUrl: './assets/user.png',
       email: 'test2@test.com',
       password: 'testtest',
       username: 'lulznope'
@@ -31,6 +31,10 @@ export class AuthService {
 
   public getAllUsers() {
     return of(this.users.slice());
+  }
+
+  public getCurrentUser() {
+    return this.currentUser;
   }
 
   public authenticateUser(user: User) {
