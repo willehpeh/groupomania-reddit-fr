@@ -1,4 +1,21 @@
 header {
+  position: relative;
   background-color: white;
-  min-height: 80px;
+  height: 80px;
+  img {
+    height: 60px;
+    margin: 0 10px;
+  }
+}
+
+.logo-header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.header-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
