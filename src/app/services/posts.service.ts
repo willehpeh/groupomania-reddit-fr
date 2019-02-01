@@ -18,15 +18,34 @@ export class PostsService {
         'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
         'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse ' +
         'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat',
-      created_at: new Date(),
+      created_at: new Date(Date.now() - 120000),
       usersUpVoted: [1, 2],
       usersDownVoted: []
     },
+    {
+      title: 'You won\'t believe what these cats can do!',
+      id: 2,
+      votes: 0,
+      comments: [],
+      authorId: 1,
+      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ' +
+        'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
+        'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse ' +
+        'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat',
+      created_at: new Date(),
+      imageUrl: 'assets/kitten.jpg',
+      usersUpVoted: [],
+      usersDownVoted: []
+    },
   ];
-  public posts$ = new BehaviorSubject<Post[]>(this.posts.slice());
+  public posts$ = new BehaviorSubject<Post[]>(this.sortedPosts());
 
   public emitPosts() {
-    this.posts$.next(this.posts.slice());
+    this.posts$.next(this.sortedPosts());
+  }
+
+  public sortedPosts() {
+    return this.posts.slice().sort((a, b) => b.created_at.getTime() - a.created_at.getTime());
   }
 
   public getPosts() {

@@ -23,6 +23,7 @@
       <img [src]="(author$ | async).photoUrl" class="author-image">
       <p><small>{{ (author$ | async).username }}</small></p>
     </div>
+    <img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" class="post-image">
     <hr>
     <p>{{ post.content }}</p>
     <hr>
