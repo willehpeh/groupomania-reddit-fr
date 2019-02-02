@@ -16,6 +16,7 @@ export class PostFormComponent implements OnInit {
   public imagePreview: string;
   public currentUser: User;
   public errorMsg: string;
+  private imageAdded: boolean;
 
   constructor(private formBuilder: FormBuilder,
               private auth: AuthService,
@@ -28,10 +29,17 @@ export class PostFormComponent implements OnInit {
       content: ['', Validators.required]
     });
     this.currentUser = this.auth.getCurrentUser();
+    this.imageAdded = false;
+  }
+
+  generateRandomKitten() {
+    const randomInt = Math.floor(Math.random() * 10 + 1);
+    return `assets/kitten${randomInt}.jpg`;
   }
 
   onImagePick(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
+    this.imageAdded = true;
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = <string>reader.result;
@@ -47,15 +55,28 @@ export class PostFormComponent implements OnInit {
     const authorId = this.currentUser.id;
     const title = this.postForm.get('title').value;
     const content = this.postForm.get('content').value;
-    this.posts.createPost(authorId, title, content)
-      .then(
-        () => {
-          this.router.navigateByUrl('/home');
+    if (this.imageAdded) {
+      this.posts.createPost(authorId, title, content, this.generateRandomKitten())
+        .then(
+          () => {
+            this.router.navigateByUrl('/home');
+          }
+        ).catch(
+        (error) => {
+          this.errorMsg = error;
         }
-      ).catch(
-      (error) => {
-        this.errorMsg = error;
-      }
-    );
+      );
+    } else {
+      this.posts.createPost(authorId, title, content)
+        .then(
+          () => {
+            this.router.navigateByUrl('/home');
+          }
+        ).catch(
+        (error) => {
+          this.errorMsg = error;
+        }
+      );
+    }
   }
 }
