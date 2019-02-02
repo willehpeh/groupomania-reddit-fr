@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Post } from '../../models/Post.model';
 import { Observable, of, Subscription } from 'rxjs';
 import { User } from '../../models/User.model';
@@ -12,7 +12,7 @@ import { map, mergeMap, tap } from 'rxjs/operators';
   templateUrl: './post-view.component.html',
   styleUrls: ['./post-view.component.scss']
 })
-export class PostViewComponent implements OnInit {
+export class PostViewComponent implements OnInit, OnDestroy {
 
   public post$: Subscription;
   public post: Post;
@@ -57,5 +57,9 @@ export class PostViewComponent implements OnInit {
         this.posts.emitPosts();
       })
       .catch((error) => this.errorMsg = error);
+  }
+
+  ngOnDestroy() {
+    this.post$.unsubscribe();
   }
 }

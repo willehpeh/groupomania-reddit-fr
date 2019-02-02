@@ -1,3 +1,28 @@
-<p>
-  comment works!
-</p>
+<div class="w-100">
+  <div class="d-flex">
+    <div class="votes text-center">
+      <div class="vote-arrows">
+        <i class="fa fa-lg fa-arrow-circle-o-up vote-arrow"
+           [ngClass]="checkForUpVote"
+           (click)="onVote(1)"></i>
+        <div class="vote-number" [ngClass]="checkForVote">
+          {{ comment.votes }}
+        </div>
+        <i class="fa fa-lg fa-arrow-circle-o-down vote-arrow"
+           [ngClass]="checkForDownVote"
+           (click)="onVote(-1)"></i>
+      </div>
+    </div>
+    <div class="comment-content">
+      <div class="comment-author">
+        <img class="author-image" [src]="(author$ | async).photoUrl" alt="Author thumbnail">
+        <small>{{ (author$ | async).username }}</small>
+      </div>
+      <hr>
+      <p class="comment-text">{{ comment.content }}</p>
+      <hr>
+      <small><i class="fa fa-comment-o"></i> {{ comment.subcomments.length }} comments</small>
+    </div>
+  </div>
+  <app-comment *ngFor="let comment of comment.subcomments" [comment]="comment"></app-comment>
+</div>

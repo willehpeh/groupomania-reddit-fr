@@ -1,7 +1,15 @@
 .post-view {
+  box-sizing: border-box;
   background-color: white;
   padding: 10px;
   margin: 20px;
+}
+
+.post-comments {
+  box-sizing: border-box;
+  background-color: white;
+  padding: 10px;
+  margin: 0 20px 20px 20px;
 }
 
 .vote-arrows {
@@ -25,4 +33,8 @@
 
 h2 {
   color: rgba(253, 46, 2, 1);
+}
+
+app-comment {
+  width: 100%;
 }

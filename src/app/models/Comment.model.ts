@@ -5,7 +5,7 @@ export class Comment {
   public subcomments: Comment[];
   public usersUpVoted: number[];
   public usersDownVoted: number[];
-  constructor(public authorId: number, public content: string) {
+  constructor(public authorId: number, public postId: number, public content: string) {
     this.id = Date.now();
     this.votes = 0;
     this.createdDate = new Date();

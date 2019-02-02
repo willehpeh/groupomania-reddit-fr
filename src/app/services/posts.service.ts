@@ -12,7 +12,9 @@ export class PostsService {
       title: 'The best place to buy hot sauce',
       id: 1,
       votes: 2,
-      comments: [],
+      comments: [
+        new Comment(1, 1, 'This post is awesome!')
+      ],
       authorId: 1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ' +
         'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
@@ -154,10 +156,10 @@ export class PostsService {
           if ((userAlreadyUpVoted && vote > 0) || (userAlreadyDownVoted && vote < 0)) {
             reject('You already voted that way!');
           } else if (userAlreadyUpVoted && vote < 0) {
-            foundComment.usersUpVoted.splice(foundPost.usersUpVoted.indexOf(userAlreadyUpVoted));
+            foundComment.usersUpVoted.splice(foundComment.usersUpVoted.indexOf(userAlreadyUpVoted));
             foundComment.votes--;
           } else if (userAlreadyDownVoted && vote > 0) {
-            foundComment.usersDownVoted.splice(foundPost.usersDownVoted.indexOf(userAlreadyDownVoted));
+            foundComment.usersDownVoted.splice(foundComment.usersDownVoted.indexOf(userAlreadyDownVoted));
             foundComment.votes++;
           } else if (vote > 0) {
             foundComment.usersUpVoted.push(userId);

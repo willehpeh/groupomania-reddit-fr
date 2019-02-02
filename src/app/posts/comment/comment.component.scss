@@ -1,0 +1,32 @@
+.comment-frame {
+  background-color: white;
+  width: 100%;
+  border: thin solid red;
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+}
+
+.votes {
+  width: 5%;
+}
+
+.vote-arrows {
+  i {
+    display: block;
+    margin: 5px;
+  }
+}
+
+.vote-arrow {
+  cursor: pointer;
+  &:hover {
+    filter: opacity(50%);
+  }
+}
+
+.comment-content {
+  width: 95%;
+}
