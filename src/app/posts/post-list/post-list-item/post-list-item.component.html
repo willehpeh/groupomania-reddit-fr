@@ -30,7 +30,16 @@
     <div class="edit-buttons">
       <small (click)="onShowPost(post.id)"><i class="fa fa-comment-o"></i> {{ post.comments.length }} comments</small>
       <small (click)="onModifyPost(post.id)" *ngIf="currentUser.id === post.authorId"><i class="fa fa-edit"></i>Edit</small>
-      <small *ngIf="currentUser.id === post.authorId"><i class="fa fa-trash-o"></i>Delete</small>
+      <small (click)="onShowDeleteModal()" *ngIf="currentUser.id === post.authorId"><i class="fa fa-trash-o"></i>Delete</small>
+    </div>
+  </div>
+</div>
+<div class="overlay" [ngClass]="{'hidden': !showDeleteModal}" (click)="onCloseModal()">
+  <div class="delete-modal" (click)="nothing($event)">
+    <h4>Are you sure you wish to delete your post?</h4>
+    <div class="text-center">
+      <button class="btn btn-success" (click)="onDeletePost(post.id)">Yes</button>
+      <button class="btn btn-danger" (click)="onCloseModal()">No</button>
     </div>
   </div>
 </div>

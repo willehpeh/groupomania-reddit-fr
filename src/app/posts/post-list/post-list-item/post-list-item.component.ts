@@ -20,6 +20,7 @@ export class PostListItemComponent implements OnInit {
   public checkForUpVote;
   public checkForDownVote;
   public errorMsg: string;
+  public showDeleteModal: boolean;
 
   constructor(private auth: AuthService,
               private posts: PostsService,
@@ -29,6 +30,7 @@ export class PostListItemComponent implements OnInit {
     this.author$ = this.auth.getUserInfo(this.post.authorId);
     this.currentUser = this.auth.getCurrentUser();
     this.refreshVoteClasses();
+    this.showDeleteModal = false;
   }
 
   refreshVoteClasses() {
@@ -57,5 +59,24 @@ export class PostListItemComponent implements OnInit {
 
   onModifyPost(id: number) {
     this.router.navigateByUrl('/post/edit/' + id);
+  }
+
+  onShowDeleteModal() {
+    this.showDeleteModal = true;
+  }
+
+  onCloseModal() {
+    this.showDeleteModal = false;
+  }
+
+  onDeletePost(id: number) {
+    this.posts.deletePost(this.post.id, this.currentUser.id)
+      .then()
+      .catch((error) => this.errorMsg = error);
+  }
+
+
+  nothing(event: Event) {
+    event.stopPropagation();
   }
 }
