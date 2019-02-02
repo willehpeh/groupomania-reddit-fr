@@ -54,4 +54,8 @@ export class PostListItemComponent implements OnInit {
   onShowPost(id: number) {
     this.router.navigateByUrl('/post/' + id);
   }
+
+  onModifyPost(id: number) {
+    this.router.navigateByUrl('/post/edit/' + id);
+  }
 }

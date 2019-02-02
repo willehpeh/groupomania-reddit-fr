@@ -30,3 +30,14 @@ h2 {
 .post-preview {
   cursor: pointer;
 }
+
+.edit-buttons {
+  small {
+    &:hover {
+      filter: opacity(50%);
+    }
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  cursor: default;
+}

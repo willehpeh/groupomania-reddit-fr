@@ -10,6 +10,7 @@ import { PostFormComponent } from './posts/post-form/post-form.component';
 const routes: Routes = [
   { path: 'home', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'post/new', component: PostFormComponent, canActivate: [AuthGuard] },
+  { path: 'post/edit/:id', component: PostFormComponent, canActivate: [AuthGuard] },
   { path: 'post/:id', component: PostViewComponent, canActivate: [AuthGuard] },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/signup', component: SignupComponent },

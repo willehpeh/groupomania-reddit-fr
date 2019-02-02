@@ -72,13 +72,13 @@ export class PostsService {
     });
   }
 
-  public modifyPost(postToModify: Post, userId: number) {
+  public modifyPost(postId: number, userId: number, newPost: Post) {
     return new Promise((resolve, reject) => {
-      const foundPost = this.getPostById(postToModify.id);
+      const foundPost = this.getPostById(postId);
       if (!foundPost || foundPost.authorId !== userId) {
         reject('Cannot modify post!');
       } else {
-        this.posts[this.posts.findIndex(post => post.id === postToModify.id)] = postToModify;
+        this.posts[this.posts.findIndex(post => post.id === postId)] = newPost;
         this.emitPosts();
         resolve();
       }
