@@ -1,0 +1,33 @@
+.post-view {
+  background-color: white;
+  padding: 10px;
+  margin: 20px;
+}
+
+.votes {
+  display: flex;
+  align-items: center;
+}
+
+.vote-arrows {
+  i {
+    display: block;
+    margin: 5px;
+  }
+}
+
+.vote-arrow {
+  cursor: pointer;
+  &:hover {
+    filter: opacity(50%);
+  }
+}
+
+.post-image {
+  max-width: 80%;
+  max-height: 400px;
+}
+
+h2 {
+  color: rgba(253, 46, 2, 1);
+}

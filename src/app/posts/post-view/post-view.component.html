@@ -1,3 +1,34 @@
-<p>
-  post-view works!
-</p>
+<div class="row">
+  <div class="row post-view">
+    <div class="col-sm-1 text-center">
+      <div class="votes border">
+        <div class="vote-arrows">
+          <i class="fa fa-lg fa-arrow-circle-o-up vote-arrow"
+             [ngClass]="checkForUpVote"
+             (click)="onVote(1)"></i>
+          <i class="fa fa-lg fa-arrow-circle-o-down vote-arrow"
+             [ngClass]="checkForDownVote"
+             (click)="onVote(-1)"></i>
+        </div>
+        <div class="vote-number" [ngClass]="checkForVote">
+          {{ post.votes }}
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-10 post-content">
+      <div class="d-flex justify-content-between">
+        <h2>{{ post.title }}</h2>
+        <small class="">{{ post.created_at | timeAgo }}</small>
+      </div>
+      <div class="d-flex align-content-center">
+        <img [src]="(author$ | async).photoUrl" class="author-image">
+        <p><small>{{ (author$ | async).username }}</small></p>
+      </div>
+      <img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" class="post-image">
+      <hr>
+      <p>{{ post.content }}</p>
+      <hr>
+      <small><i class="fa fa-comment-o"></i> {{ post.comments.length }} comments</small>
+    </div>
+  </div>
+</div>

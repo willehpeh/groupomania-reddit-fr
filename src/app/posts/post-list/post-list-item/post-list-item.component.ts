@@ -4,6 +4,7 @@ import { User } from '../../../models/User.model';
 import { AuthService } from '../../../services/auth.service';
 import { Observable } from 'rxjs';
 import { PostsService } from '../../../services/posts.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-list-item',
@@ -21,7 +22,8 @@ export class PostListItemComponent implements OnInit {
   public errorMsg: string;
 
   constructor(private auth: AuthService,
-              private posts: PostsService) { }
+              private posts: PostsService,
+              private router: Router) { }
 
   ngOnInit() {
     this.author$ = this.auth.getUserInfo(this.post.authorId);
@@ -47,5 +49,9 @@ export class PostListItemComponent implements OnInit {
     this.posts.adjustVote(this.post.id, vote, this.currentUser.id)
       .then(() => this.refreshVoteClasses())
       .catch((error) => this.errorMsg = error);
+  }
+
+  onShowPost(id: number) {
+    this.router.navigateByUrl('/post/' + id);
   }
 }

@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from '../../models/Post.model';
+import { Observable, of, Subscription } from 'rxjs';
+import { User } from '../../models/User.model';
+import { AuthService } from '../../services/auth.service';
+import { PostsService } from '../../services/posts.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-view',
@@ -7,9 +14,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostViewComponent implements OnInit {
 
-  constructor() { }
+  public post$: Subscription;
+  public post: Post;
+  public author$: Observable<User>;
+  public currentUser: User;
+  public checkForVote;
+  public checkForUpVote;
+  public checkForDownVote;
+  public errorMsg: string;
+
+  constructor(private auth: AuthService,
+              private posts: PostsService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.post = new Post(0, '', '');
+    this.currentUser = this.auth.getCurrentUser();
+    this.post$ = this.posts.getPosts().pipe(
+      map(posts => posts.find(post => post.id === +this.route.snapshot.params['id'])))
+      .subscribe(
+      (post) => {
+        this.post = post;
+        this.author$ = this.auth.getUserInfo(post.authorId);
+        this.checkForUpVote = {
+          'text-success': post.usersUpVoted.find(user => user === this.currentUser.id)
+        };
+        this.checkForDownVote = {
+          'text-danger': post.usersDownVoted.find(user => user === this.currentUser.id)
+        };
+        this.checkForVote = { ...this.checkForUpVote, ...this.checkForDownVote };
+      });
   }
 
+  onVote(vote: number) {
+    if ((this.post.usersUpVoted.find(user => user === this.currentUser.id) && vote > 0) ||
+      this.post.usersDownVoted.find(user => user === this.currentUser.id) && vote < 0) {
+      return;
+    }
+    this.posts.adjustVote(this.post.id, vote, this.currentUser.id)
+      .then(() => {
+        this.posts.emitPosts();
+      })
+      .catch((error) => this.errorMsg = error);
+  }
 }

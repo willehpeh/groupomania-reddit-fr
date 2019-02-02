@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post.model';
 import { Comment } from '../models/Comment.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, of, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class PostsService {
       usersDownVoted: []
     },
   ];
-  public posts$ = new BehaviorSubject<Post[]>(this.sortedPosts());
+  private posts$ = new BehaviorSubject<Post[]>(this.sortedPosts());
 
   public emitPosts() {
     this.posts$.next(this.sortedPosts());
@@ -54,6 +54,10 @@ export class PostsService {
 
   public getPostById(id: number) {
     return this.posts.find(post => post.id === id);
+  }
+
+  public getPostObservableById(id: number) {
+    return of(this.posts.find(post => post.id === id));
   }
 
   public createPost(authorId: number, title: string, content: string, imageUrl?: string) {
