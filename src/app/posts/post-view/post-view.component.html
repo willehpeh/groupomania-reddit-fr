@@ -1,17 +1,17 @@
 <div class="row">
   <div class="row post-view">
     <div class="col-sm-1 text-center">
-      <div class="votes border">
+      <div class="votes">
         <div class="vote-arrows">
-          <i class="fa fa-lg fa-arrow-circle-o-up vote-arrow"
+          <i class="fa fa-2x fa-arrow-circle-o-up vote-arrow"
              [ngClass]="checkForUpVote"
              (click)="onVote(1)"></i>
-          <i class="fa fa-lg fa-arrow-circle-o-down vote-arrow"
+          <div class="vote-number" [ngClass]="checkForVote">
+            {{ post.votes }}
+          </div>
+          <i class="fa fa-2x fa-arrow-circle-o-down vote-arrow"
              [ngClass]="checkForDownVote"
              (click)="onVote(-1)"></i>
-        </div>
-        <div class="vote-number" [ngClass]="checkForVote">
-          {{ post.votes }}
         </div>
       </div>
     </div>
