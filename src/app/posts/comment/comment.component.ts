@@ -50,7 +50,7 @@ export class CommentComponent implements OnInit, OnDestroy {
       .catch((error) => this.errorMsg = error);
   }
 
-  ngOnDestroy(): {
-
+  ngOnDestroy() {
+    this.comment$.unsubscribe();
   }
 }
