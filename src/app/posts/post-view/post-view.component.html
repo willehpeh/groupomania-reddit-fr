@@ -32,6 +32,7 @@
     </div>
   </div>
   <div class="row post-comments w-100">
+    <app-add-comment (commented)="onCommentAdded($event)"></app-add-comment>
     <app-comment *ngFor="let comment of post.comments" [comment]="comment"></app-comment>
   </div>
 </div>

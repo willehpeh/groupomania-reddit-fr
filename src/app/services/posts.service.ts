@@ -13,7 +13,8 @@ export class PostsService {
       id: 1,
       votes: 2,
       comments: [
-        new Comment(1, 1, 'This post is awesome!')
+        new Comment(1, 1, 'This post is awesome!'),
+        new Comment(2, 1, 'I dunno man, I think it sucks')
       ],
       authorId: 1,
       content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ' +

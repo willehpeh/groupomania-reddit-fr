@@ -14,15 +14,16 @@
       </div>
     </div>
     <div class="comment-content">
+      <small class="comment-date">
+        {{ comment.createdDate | timeAgo }}
+      </small>
       <div class="comment-author">
         <img class="author-image" [src]="(author$ | async).photoUrl" alt="Author thumbnail">
         <small>{{ (author$ | async).username }}</small>
       </div>
       <hr>
       <p class="comment-text">{{ comment.content }}</p>
-      <hr>
-      <small><i class="fa fa-comment-o"></i> {{ comment.subcomments.length }} comments</small>
     </div>
   </div>
-  <app-comment *ngFor="let comment of comment.subcomments" [comment]="comment"></app-comment>
+  <hr>
 </div>

@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PostListItemComponent } from './posts/post-list/post-list-item/post-list-item.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
+import { AddCommentComponent } from './posts/comment/add-comment/add-comment.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TimeAgoPipe } from './pipes/time-ago.pipe';
     CommentComponent,
     PostListItemComponent,
     ProfileComponent,
-    TimeAgoPipe
+    TimeAgoPipe,
+    AddCommentComponent
   ],
   imports: [
     BrowserModule,

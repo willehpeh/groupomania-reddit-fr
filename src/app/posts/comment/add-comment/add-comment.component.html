@@ -1,0 +1,7 @@
+<form [formGroup]="commentForm">
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea name="comment" id="comment" cols="20" rows="4" class="form-control" formControlName="comment"></textarea>
+  </div>
+  <button class="btn btn-primary" (click)="onAddComment()">Comment</button>
+</form>

@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Post } from '../../models/Post.model';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from '../../models/User.model';
 import { AuthService } from '../../services/auth.service';
 import { PostsService } from '../../services/posts.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { Comment } from '../../models/Comment.model';
 
 @Component({
   selector: 'app-post-view',
@@ -36,6 +37,7 @@ export class PostViewComponent implements OnInit, OnDestroy {
       .subscribe(
       (post) => {
         this.post = post;
+        this.post.comments = this.post.comments.sort((a, b) => b.createdDate.getTime() - a.createdDate.getTime());
         this.author$ = this.auth.getUserInfo(post.authorId);
         this.checkForUpVote = {
           'text-success': post.usersUpVoted.find(user => user === this.currentUser.id)
@@ -57,6 +59,13 @@ export class PostViewComponent implements OnInit, OnDestroy {
         this.posts.emitPosts();
       })
       .catch((error) => this.errorMsg = error);
+  }
+
+  onCommentAdded(text: string) {
+    const newComment = new Comment(this.currentUser.id, this.post.id, text);
+    this.posts.addCommentToPost(this.post.id, newComment)
+      .then()
+      .catch(error => this.errorMsg = error);
   }
 
   ngOnDestroy() {
