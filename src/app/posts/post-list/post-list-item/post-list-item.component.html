@@ -25,7 +25,7 @@
     </div>
     <img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" class="post-image">
     <hr>
-    <p>{{ post.content }}</p>
+    <p class="post-content-text">{{ post.content }}</p>
     <hr>
     <small><i class="fa fa-comment-o"></i> {{ post.comments.length }} comments</small>
   </div>
