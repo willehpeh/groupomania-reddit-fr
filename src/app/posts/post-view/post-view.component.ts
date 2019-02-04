@@ -31,6 +31,7 @@ export class PostViewComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    window.scrollTo(0, 0);
     this.showDeleteModal = false;
     this.post = new Post(0, '', '');
     this.currentUser = this.auth.getCurrentUser();
@@ -90,6 +91,10 @@ export class PostViewComponent implements OnInit, OnDestroy {
 
   nothing(event: Event) {
     event.stopPropagation();
+  }
+
+  onGoHome() {
+    this.router.navigateByUrl('/home');
   }
 
   ngOnDestroy() {
