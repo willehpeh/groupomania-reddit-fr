@@ -86,6 +86,8 @@ export class PostsService {
       if (!foundPost || foundPost.authorId !== userId) {
         reject('Cannot modify post!');
       } else {
+        newPost.comments = foundPost.comments;
+        newPost.id = foundPost.id;
         this.posts[this.posts.findIndex(post => post.id === postId)] = newPost;
         this.emitPosts();
         resolve();
