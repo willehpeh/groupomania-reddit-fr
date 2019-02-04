@@ -23,6 +23,7 @@ export class PostViewComponent implements OnInit, OnDestroy {
   public checkForUpVote;
   public checkForDownVote;
   public errorMsg: string;
+  public showDeleteModal: boolean;
 
   constructor(private auth: AuthService,
               private posts: PostsService,
@@ -30,6 +31,7 @@ export class PostViewComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.showDeleteModal = false;
     this.post = new Post(0, '', '');
     this.currentUser = this.auth.getCurrentUser();
     this.post$ = this.posts.getPosts().pipe(
@@ -66,6 +68,28 @@ export class PostViewComponent implements OnInit, OnDestroy {
     this.posts.addCommentToPost(this.post.id, newComment)
       .then()
       .catch(error => this.errorMsg = error);
+  }
+
+  onModifyPost(id: number) {
+    this.router.navigateByUrl('/post/edit/' + id);
+  }
+
+  onShowDeleteModal() {
+    this.showDeleteModal = true;
+  }
+
+  onCloseModal() {
+    this.showDeleteModal = false;
+  }
+
+  onDeletePost(id: number) {
+    this.posts.deletePost(this.post.id, this.currentUser.id)
+      .then(() => this.router.navigateByUrl('/home'))
+      .catch((error) => this.errorMsg = error);
+  }
+
+  nothing(event: Event) {
+    event.stopPropagation();
   }
 
   ngOnDestroy() {

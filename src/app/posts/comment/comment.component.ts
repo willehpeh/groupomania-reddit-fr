@@ -47,7 +47,13 @@ export class CommentComponent implements OnInit, OnDestroy {
   onVote(vote: number) {
     this.posts.adjustCommentVote(this.comment.postId, this.comment.id, vote, this.currentUser.id)
       .then()
-      .catch((error) => this.errorMsg = error);
+      .catch(error => this.errorMsg = error);
+  }
+
+  onDeleteComment() {
+    this.posts.deleteComment(this.comment.postId, this.comment.id, this.currentUser.id)
+      .then()
+      .catch(error => this.errorMsg = error);
   }
 
   ngOnDestroy() {

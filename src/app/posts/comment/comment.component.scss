@@ -34,3 +34,14 @@
 .comment-date {
   float: right;
 }
+
+.edit-buttons {
+  small {
+    &:hover {
+      filter: opacity(50%);
+    }
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  cursor: default;
+}

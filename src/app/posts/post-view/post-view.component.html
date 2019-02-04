@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="row post-view">
+<div class="row post-view">
     <div class="col-sm-1 text-center">
       <div class="votes">
         <div class="vote-arrows">
@@ -28,11 +27,23 @@
       <hr>
       <p>{{ post.content }}</p>
       <hr>
-      <small><i class="fa fa-comment-o"></i> {{ post.comments.length }} comments</small>
+      <div class="edit-buttons" (click)="nothing($event)">
+        <small><i class="fa fa-comment-o"></i> {{ post.comments.length }} comments</small>
+        <small (click)="onModifyPost(post.id)" *ngIf="currentUser.id === post.authorId"><i class="fa fa-edit"></i>Edit</small>
+        <small (click)="onShowDeleteModal()" *ngIf="currentUser.id === post.authorId"><i class="fa fa-trash-o"></i>Delete</small>
+      </div>
     </div>
   </div>
   <div class="row post-comments w-100">
     <app-add-comment (commented)="onCommentAdded($event)"></app-add-comment>
     <app-comment *ngFor="let comment of post.comments" [comment]="comment"></app-comment>
+  </div>
+<div class="overlay" [ngClass]="{'hidden': !showDeleteModal}" (click)="onCloseModal()">
+  <div class="delete-modal" (click)="nothing($event)">
+    <h4>Are you sure you wish to delete your post?</h4>
+    <div class="text-center">
+      <button class="btn btn-success" (click)="onDeletePost(post.id)">Yes</button>
+      <button class="btn btn-danger" (click)="onCloseModal()">No</button>
+    </div>
   </div>
 </div>

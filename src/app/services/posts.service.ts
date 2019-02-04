@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Post } from '../models/Post.model';
 import { Comment } from '../models/Comment.model';
 import { BehaviorSubject, of, Subject } from 'rxjs';
+import { post } from 'selenium-webdriver/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,14 +14,14 @@ export class PostsService {
       id: 1,
       votes: 2,
       comments: [
-        new Comment(1, 1, 'This post is awesome!'),
         new Comment(2, 1, 'I dunno man, I think it sucks')
       ],
       authorId: 1,
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ' +
-        'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
-        'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse ' +
-        'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat',
+      content: 'Dream about hunting birds destroy couch, for mice spread kitty litter all over house. ' +
+        'Cough hairball on conveniently placed pants. Destroy the blinds cough furball into food bowl ' +
+        'then scratch owner for a new one damn that dog and eat the fat cats food warm up laptop with ' +
+        'butt lick butt fart rainbows until owner yells pee in litter box hiss at cats. Lick the other ' +
+        'cats hack up furballs destroy couch as revenge. Where is my slave?',
       created_at: new Date(Date.now() - 120000),
       usersUpVoted: [1, 2],
       usersDownVoted: []
@@ -31,10 +32,14 @@ export class PostsService {
       votes: 0,
       comments: [],
       authorId: 1,
-      content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ' +
-        'labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' +
-        'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse ' +
-        'cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat',
+      content: 'I\'m getting hungry cat meoooow i iz master of hoomaan, not hoomaan master of i, oooh ' +
+        'damn dat dog annoy kitten brother with poking stare at the wall, play with food and get ' +
+        'confused by dust scratch at fleas, meow until belly rubs, hide behind curtain when vacuum ' +
+        'cleaner is on scratch strangers and poo on owners food or make meme, make cute face. ' +
+        'Stretch with tail in the air missing until dinner time. I shredded your linens for you love ' +
+        'to play with owner\'s hair tie and my cat stared at me he was sipping his tea, too crash ' +
+        'against wall but walk away like nothing happened proudly present butt to human so i like ' +
+        'big cats and i can not lie yet thug cat ',
       created_at: new Date(),
       imageUrl: 'assets/kitten.jpg',
       usersUpVoted: [],
@@ -97,6 +102,24 @@ export class PostsService {
         this.posts.splice(this.posts.indexOf(foundPost), 1);
         this.emitPosts();
         resolve();
+      }
+    });
+  }
+
+  public deleteComment(postId: number, commentId: number, userId: number) {
+    return new Promise((resolve, reject) => {
+      const foundPost = this.getPostById(postId);
+      if (!foundPost) {
+        reject('Cannot find post!');
+      } else {
+        const foundComment = foundPost.comments.find(commentEl => commentEl.id === commentId);
+        if (!foundComment || foundComment.authorId !== userId) {
+          reject('You are not allowed to delete that comment!');
+        } else {
+          this.posts[this.posts.indexOf(foundPost)].comments.splice(foundPost.comments.indexOf(foundComment), 1);
+          this.emitPosts();
+          resolve();
+        }
       }
     });
   }

@@ -39,3 +39,40 @@ app-comment, app-add-comment {
   width: 100%;
   margin: 10px 0;
 }
+
+.edit-buttons {
+  small {
+    &:hover {
+      filter: opacity(50%);
+    }
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  cursor: default;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.delete-modal {
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px;
+  z-index: 11;
+  button {
+    margin: 10px;
+  }
+}
+.hidden {
+  display: none;
+}
