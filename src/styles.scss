@@ -8,3 +8,10 @@
 .post-content-text {
   white-space: pre-wrap;
 }
+
+.profile-link {
+  cursor: pointer;
+  &:hover {
+    color: rgba(253, 42, 3, 1);
+  }
+}

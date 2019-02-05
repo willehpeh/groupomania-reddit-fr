@@ -97,6 +97,10 @@ export class PostViewComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/home');
   }
 
+  onGoToProfilePage(id: number) {
+    this.router.navigateByUrl(`profile/${id}`);
+  }
+
   ngOnDestroy() {
     this.post$.unsubscribe();
   }

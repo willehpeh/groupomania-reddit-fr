@@ -1,3 +1,18 @@
-<p>
-  profile works!
-</p>
+<div class="row">
+  <div class="col-12 profile-container">
+    <h2>{{ (user$ | async).username }}</h2>
+    <img class="profile-photo" [src]="(user$ | async).photoUrl" alt="User thumbnail">
+    <p>E-mail address: {{ (user$ | async).email }}</p>
+    <button *ngIf="showEditButtons" class="btn btn-primary">Edit</button>
+    <button *ngIf="showEditButtons" class="btn btn-danger" (click)="onShowDeleteModal()">Delete</button>
+  </div>
+</div>
+<div class="overlay" [ngClass]="{'hidden': !showDeleteModal}" (click)="onCloseModal()">
+  <div class="delete-modal" (click)="nothing($event)">
+    <h4>Are you sure you wish to delete your post?</h4>
+    <div class="text-center">
+      <button class="btn btn-success" (click)="onDeleteProfile()">Yes</button>
+      <button class="btn btn-danger" (click)="onCloseModal()">No</button>
+    </div>
+  </div>
+</div>

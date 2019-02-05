@@ -20,8 +20,8 @@
       <small class="">{{ post.created_at | timeAgo }}</small>
     </div>
     <div class="d-flex align-content-center">
-      <img [src]="(author$ | async).photoUrl" class="author-image">
-      <p><small>{{ (author$ | async).username }}</small></p>
+      <img [src]="(author$ | async).photoUrl" class="author-image profile-link" (click)="onGoToProfilePage(post.authorId)">
+      <p><small class="profile-link" (click)="onGoToProfilePage(post.authorId)">{{ (author$ | async).username }}</small></p>
     </div>
     <img *ngIf="post.imageUrl" [src]="post.imageUrl" [alt]="post.title" class="post-image">
     <hr>

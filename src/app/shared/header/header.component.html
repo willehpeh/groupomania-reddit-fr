@@ -11,6 +11,9 @@
         <a class="nav-link" routerLink="auth/signup" routerLinkActive="active border border-left-0 border-right-0 border-primary">Sign up</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuth">
+        <a class="nav-link text-primary" routerLink="home" routerLinkActive="active border border-left-0 border-right-0 border-primary">Forums</a>
+      </li>
+      <li class="nav-item" *ngIf="auth.isAuth">
         <a class="nav-link text-primary" routerLink="post/new" routerLinkActive="active border border-left-0 border-right-0 border-primary">New Post</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuth">

@@ -75,6 +75,9 @@ export class PostListItemComponent implements OnInit {
       .catch((error) => this.errorMsg = error);
   }
 
+  onGoToProfilePage(id: number) {
+    this.router.navigateByUrl(`profile/${id}`);
+  }
 
   nothing(event: Event) {
     event.stopPropagation();

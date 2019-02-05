@@ -14,7 +14,7 @@
         <label for="password">Password</label>
         <input type="password" id="password" class="form-control" formControlName="password">
       </div>
-      <button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid">Login</button>
+      <button class="btn btn-primary" (click)="onSignup()" [disabled]="signupForm.invalid">Sign up</button>
       <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
     </form>
   </div>

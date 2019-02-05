@@ -16,6 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { AddCommentComponent } from './posts/comment/add-comment/add-comment.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
     ProfileComponent,
     TimeAgoPipe,
     AddCommentComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ProfileEditComponent
   ],
   imports: [
     BrowserModule,
