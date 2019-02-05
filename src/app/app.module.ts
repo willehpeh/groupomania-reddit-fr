@@ -15,6 +15,7 @@ import { PostListItemComponent } from './posts/post-list/post-list-item/post-lis
 import { ProfileComponent } from './profile/profile.component';
 import { TimeAgoPipe } from './pipes/time-ago.pipe';
 import { AddCommentComponent } from './posts/comment/add-comment/add-comment.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AddCommentComponent } from './posts/comment/add-comment/add-comment.com
     PostListItemComponent,
     ProfileComponent,
     TimeAgoPipe,
-    AddCommentComponent
+    AddCommentComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
