@@ -1,3 +1,26 @@
-<p>
-  profile-edit works!
-</p>
+<div class="row edit-form">
+  <div class="col-sm-8 offset-sm-2">
+    <h2>Edit profile</h2>
+    <form [formGroup]="profileForm">
+      <div class="text-center">
+        <img [src]="imageThumbnail" alt="User thumbnail" class="thumbnail">
+        <div class="profile-photo-button" (click)="fileInput.click()">
+          <i class="fa fa-edit"></i>
+        </div>
+      </div>
+      <input type="file" accept="image/jpeg, image/png" #fileInput (change)="onChooseImage($event)">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-control" formControlName="username">
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail address</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+      </div>
+      <div class="float-right">
+        <button class="btn btn-danger" type="button" (click)="onGoBack()">Cancel</button>
+        <button class="btn btn-primary" type="submit" (click)="onSubmitProfile()" [disabled]="profileForm.invalid">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

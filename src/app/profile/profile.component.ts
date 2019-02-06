@@ -25,13 +25,17 @@ export class ProfileComponent implements OnInit {
     this.showDeleteModal = false;
     this.currentUser = this.auth.getCurrentUser();
     const userId = this.route.snapshot.params['id'];
-    if (userId) {
+    if (userId && +userId !== this.currentUser.id) {
       this.showEditButtons = false;
       this.user$ = this.auth.getUserInfo(+userId);
     } else {
       this.showEditButtons = true;
       this.user$ = this.auth.getUserInfo(+this.currentUser.id);
     }
+  }
+
+  onEditProfile() {
+    this.router.navigateByUrl('profile/edit');
   }
 
   onShowDeleteModal() {

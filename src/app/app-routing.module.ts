@@ -8,6 +8,7 @@ import { PostViewComponent } from './posts/post-view/post-view.component';
 import { PostFormComponent } from './posts/post-form/post-form.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 
 const routes: Routes = [
   { path: 'welcome', component: LandingPageComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'post/edit/:id', component: PostFormComponent, canActivate: [AuthGuard] },
   { path: 'post/:id', component: PostViewComponent, canActivate: [AuthGuard] },
   { path: 'profile/me', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/edit', component: ProfileEditComponent, canActivate: [AuthGuard] },
   { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/signup', component: SignupComponent },

@@ -1,0 +1,36 @@
+button {
+  margin-left: 10px;
+}
+
+.edit-form {
+  padding: 20px;
+}
+
+.thumbnail {
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.profile-photo-button {
+  position: relative;
+  border: thin solid #AAA;
+  left: 60%;
+  background-color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  transform: translateY(-40px);
+  cursor: pointer;
+  i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
