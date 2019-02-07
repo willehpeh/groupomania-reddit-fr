@@ -5,22 +5,22 @@
   <div class="col-6 header-links">
     <ul class="nav float-right">
       <li class="nav-item" *ngIf="!auth.isAuth">
-        <a class="nav-link" routerLink="auth/login" routerLinkActive="active border border-left-0 border-right-0 border-primary">Login</a>
+        <a class="nav-link" routerLink="auth/login" routerLinkActive="active border border-left-0 border-right-0 border-primary">Se connecter</a>
       </li>
       <li class="nav-item" *ngIf="!auth.isAuth">
-        <a class="nav-link" routerLink="auth/signup" routerLinkActive="active border border-left-0 border-right-0 border-primary">Sign up</a>
+        <a class="nav-link" routerLink="auth/signup" routerLinkActive="active border border-left-0 border-right-0 border-primary">S'inscrire</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuth">
         <a class="nav-link text-primary" routerLink="home" routerLinkActive="active border border-left-0 border-right-0 border-primary">Forums</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuth">
-        <a class="nav-link text-primary" routerLink="post/new" routerLinkActive="active border border-left-0 border-right-0 border-primary">New Post</a>
+        <a class="nav-link text-primary" routerLink="post/new" routerLinkActive="active border border-left-0 border-right-0 border-primary">Nouveau post</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuth">
-        <a class="nav-link text-primary" routerLink="profile/me" routerLinkActive="active border border-left-0 border-right-0 border-primary">My Profile</a>
+        <a class="nav-link text-primary" routerLink="profile/me" routerLinkActive="active border border-left-0 border-right-0 border-primary">Mon profil</a>
       </li>
       <li class="nav-item" *ngIf="auth.isAuth">
-        <a class="nav-link text-primary" style="cursor: pointer" (click)="onLogout()">Logout</a>
+        <a class="nav-link text-primary" style="cursor: pointer" (click)="onLogout()">Se déconnecter</a>
       </li>
     </ul>
   </div>

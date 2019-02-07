@@ -24,7 +24,7 @@
       <hr>
       <p class="comment-text">{{ comment.content }}</p>
       <div class="edit-buttons">
-        <small (click)="onDeleteComment()" *ngIf="currentUser.id === comment.authorId"><i class="fa fa-trash-o"></i>Delete</small>
+        <small (click)="onDeleteComment()" *ngIf="currentUser.id === comment.authorId"><i class="fa fa-trash-o"></i>Supprimer</small>
       </div>
       <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
     </div>

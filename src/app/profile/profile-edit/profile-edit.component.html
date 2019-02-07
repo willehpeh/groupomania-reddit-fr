@@ -1,6 +1,6 @@
 <div class="row edit-form">
   <div class="col-sm-8 offset-sm-2">
-    <h2>Edit profile</h2>
+    <h2>Modifier profil</h2>
     <form [formGroup]="profileForm">
       <div class="text-center">
         <img [src]="imageThumbnail" alt="User thumbnail" class="thumbnail">
@@ -10,16 +10,16 @@
       </div>
       <input type="file" accept="image/jpeg, image/png" #fileInput (change)="onChooseImage($event)">
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username">Nom d'utilisateur</label>
         <input type="text" id="username" class="form-control" formControlName="username">
       </div>
       <div class="form-group">
-        <label for="email">E-mail address</label>
+        <label for="email">Adresse mail</label>
         <input type="email" id="email" class="form-control" formControlName="email">
       </div>
       <div class="float-right">
-        <button class="btn btn-danger" type="button" (click)="onGoBack()">Cancel</button>
-        <button class="btn btn-primary" type="submit" (click)="onSubmitProfile()" [disabled]="profileForm.invalid">Save</button>
+        <button class="btn btn-danger" type="button" (click)="onGoBack()">Annuler</button>
+        <button class="btn btn-primary" type="submit" (click)="onSubmitProfile()" [disabled]="profileForm.invalid">Enregistrer</button>
       </div>
     </form>
   </div>

@@ -46,9 +46,9 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       const foundUser = this.users.find(user => user.username === username);
       if (!foundUser) {
-        reject('User not found!');
+        reject('Utilisateur non trouvé !');
       } else if (foundUser && password !== foundUser.password) {
-        reject('Incorrect password for user!');
+        reject('Mot de passe incorrect !');
       } else {
         this.authenticateUser(foundUser);
         resolve();
@@ -60,7 +60,7 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       if (this.users.find(user => user.username === username) ||
         this.users.find(user => user.email === email)) {
-        reject('User already exists!');
+        reject('Cet utilisateur existe déjà !');
       } else {
         const newUser = new User(username, email, password);
         if (photoUrl) {

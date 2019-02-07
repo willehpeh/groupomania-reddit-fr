@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post.model';
 import { Comment } from '../models/Comment.model';
-import { BehaviorSubject, of, Subject } from 'rxjs';
-import { post } from 'selenium-webdriver/http';
+import { BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +9,11 @@ import { post } from 'selenium-webdriver/http';
 export class PostsService {
   private posts: Post[] = [
     {
-      title: 'The best place to buy hot sauce',
+      title: 'Le meilleur endroit où acheter de la hot sauce !',
       id: 1,
       votes: 2,
       comments: [
-        new Comment(2, 1, 'I dunno man, I think it sucks')
+        new Comment(2, 1, 'Je suis pas du tout d\'accord !')
       ],
       authorId: 1,
       content: 'Dream about hunting birds destroy couch, for mice spread kitty litter all over house. ' +
@@ -27,7 +26,7 @@ export class PostsService {
       usersDownVoted: []
     },
     {
-      title: 'You won\'t believe what these cats can do!',
+      title: 'Ces chats sont vraiment totalement fous !',
       id: 2,
       votes: 0,
       comments: [],
@@ -84,7 +83,7 @@ export class PostsService {
     return new Promise((resolve, reject) => {
       const foundPost = this.getPostById(postId);
       if (!foundPost || foundPost.authorId !== userId) {
-        reject('Cannot modify post!');
+        reject('Impossible de modifier ce post!');
       } else {
         newPost.comments = foundPost.comments;
         newPost.id = foundPost.id;
@@ -99,7 +98,7 @@ export class PostsService {
     return new Promise((resolve, reject) => {
       const foundPost = this.getPostById(postId);
       if (!foundPost || foundPost.authorId !== userId) {
-        reject('Cannot modify post!');
+        reject('Impossible de modifier ce post!');
       } else {
         this.posts.splice(this.posts.indexOf(foundPost), 1);
         this.emitPosts();
@@ -112,7 +111,7 @@ export class PostsService {
     return new Promise((resolve, reject) => {
       const foundPost = this.getPostById(postId);
       if (!foundPost) {
-        reject('Cannot find post!');
+        reject('Post introuvable !');
       } else {
         const foundComment = foundPost.comments.find(commentEl => commentEl.id === commentId);
         if (!foundComment || foundComment.authorId !== userId) {
@@ -130,7 +129,7 @@ export class PostsService {
     return new Promise((resolve, reject) => {
       const foundPost = this.getPostById(postId);
       if (!foundPost) {
-        reject('Could not find post!');
+        reject('Post non trouvé !');
       } else {
         foundPost.comments.push(comment);
         this.emitPosts();
@@ -143,7 +142,7 @@ export class PostsService {
     return new Promise((resolve, reject) => {
       const foundPost = this.getPostById(postId);
       if (!foundPost) {
-        reject('Could not find post!');
+        reject('Post non trouvé !');
       } else {
         const userAlreadyUpVoted = foundPost.usersUpVoted.find(id => id === userId);
         const userAlreadyDownVoted = foundPost.usersDownVoted.find(id => id === userId);
@@ -171,11 +170,11 @@ export class PostsService {
     return new Promise((resolve, reject) => {
       const foundPost = this.getPostById(postId);
       if (!foundPost) {
-        reject('Could not find post!');
+        reject('Post non trouvé !');
       } else {
         const foundComment = foundPost.comments.find(comment => comment.id === commentId);
         if (!foundComment) {
-          reject('Could not find comment!');
+          reject('Commentaire non trouvé !');
         } else {
           const userAlreadyUpVoted = foundComment.usersUpVoted.find(id => id === userId);
           const userAlreadyDownVoted = foundComment.usersDownVoted.find(id => id === userId);

@@ -28,18 +28,18 @@
     <p class="post-content-text">{{ post.content }}</p>
     <hr>
     <div class="edit-buttons" (click)="nothing($event)">
-      <small (click)="onShowPost(post.id)"><i class="fa fa-comment-o"></i> {{ post.comments.length }} comments</small>
-      <small (click)="onModifyPost(post.id)" *ngIf="currentUser.id === post.authorId"><i class="fa fa-edit"></i>Edit</small>
-      <small (click)="onShowDeleteModal()" *ngIf="currentUser.id === post.authorId"><i class="fa fa-trash-o"></i>Delete</small>
+      <small (click)="onShowPost(post.id)"><i class="fa fa-comment-o"></i> {{ post.comments.length }} commentaires</small>
+      <small (click)="onModifyPost(post.id)" *ngIf="currentUser.id === post.authorId"><i class="fa fa-edit"></i>Modifier</small>
+      <small (click)="onShowDeleteModal()" *ngIf="currentUser.id === post.authorId"><i class="fa fa-trash-o"></i>Supprimer</small>
     </div>
   </div>
 </div>
 <div class="overlay" [ngClass]="{'hidden': !showDeleteModal}" (click)="onCloseModal()">
   <div class="delete-modal" (click)="nothing($event)">
-    <h4>Are you sure you wish to delete your post?</h4>
+    <h4>Voulez-vous vraiment supprimer votre post ?</h4>
     <div class="text-center">
-      <button class="btn btn-success" (click)="onDeletePost(post.id)">Yes</button>
-      <button class="btn btn-danger" (click)="onCloseModal()">No</button>
+      <button class="btn btn-success" (click)="onDeletePost(post.id)">Oui</button>
+      <button class="btn btn-danger" (click)="onCloseModal()">Non</button>
     </div>
   </div>
 </div>

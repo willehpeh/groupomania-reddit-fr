@@ -2,17 +2,17 @@
   <div class="col-12 profile-container">
     <h2>{{ (user$ | async).username }}</h2>
     <img class="profile-photo" [src]="(user$ | async).photoUrl" alt="User thumbnail">
-    <p>E-mail address: {{ (user$ | async).email }}</p>
-    <button *ngIf="showEditButtons" class="btn btn-primary" (click)="onEditProfile()">Edit</button>
-    <button *ngIf="showEditButtons" class="btn btn-danger" (click)="onShowDeleteModal()">Delete</button>
+    <p>Adresse mail : {{ (user$ | async).email }}</p>
+    <button *ngIf="showEditButtons" class="btn btn-primary" (click)="onEditProfile()">Modifier</button>
+    <button *ngIf="showEditButtons" class="btn btn-danger" (click)="onShowDeleteModal()">Supprimer</button>
   </div>
 </div>
 <div class="overlay" [ngClass]="{'hidden': !showDeleteModal}" (click)="onCloseModal()">
   <div class="delete-modal" (click)="nothing($event)">
-    <h4>Are you sure you wish to delete your profile?</h4>
+    <h4>Voulez-vous vraiment supprimer votre profil ?</h4>
     <div class="text-center">
-      <button class="btn btn-success" (click)="onDeleteProfile()">Yes</button>
-      <button class="btn btn-danger" (click)="onCloseModal()">No</button>
+      <button class="btn btn-success" (click)="onDeleteProfile()">Oui</button>
+      <button class="btn btn-danger" (click)="onCloseModal()">Non</button>
     </div>
   </div>
 </div>
